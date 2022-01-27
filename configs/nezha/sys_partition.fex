@@ -35,7 +35,7 @@ size = 252
 
 [partition]
     name         = boot-resource
-    size         = 504
+    size         = 8064
     downloadfile = "boot-resource.fex"
     user_type    = 0x8000
 

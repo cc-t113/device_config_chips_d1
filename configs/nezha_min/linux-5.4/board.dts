@@ -419,6 +419,7 @@
 		function = "gpio_in";
 	};
 
+/*
 	pwm7_pin_a: pwm7@0 {
 		pins = "PD22";
 		function = "pwm7";
@@ -430,6 +431,7 @@
 		pins = "PD22";
 		function = "gpio_in";
 	};
+*/
 
 	s_cir0_pins_a: s_cir@0 {
 		pins = "PB12";
@@ -478,11 +480,11 @@
 };
 
 &uart3 {
-	compatible = "allwinner,sun20iw1-dsp-uart";
+	/*compatible = "allwinner,sun20iw1-dsp-uart";*/
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&uart3_pins_a>;
 	pinctrl-1 = <&uart3_pins_a>;
-	status = "okay";
+	status = "disabled";
 };
 
 &soc {
@@ -716,13 +718,13 @@ tvd_row*tvd_column is the total tvd channel number to be used in multichannel mo
 /* if audiocodec is used, sdc0 and uart0 should be closed to enable PA. */
 &codec {
 	/* MIC and headphone gain setting */
-	mic1gain 	= <0x1F>;
-	mic2gain 	= <0x1F>;
-	mic3gain 	= <0x1F>;
+	mic1gain 	= <0x13>;
+	mic2gain 	= <0x13>;
+	mic3gain 	= <0x13>;
 	/* ADC/DAC DRC/HPF func enabled */
         /* 0x1:DAP_HP_EN; 0x2:DAP_SPK_EN; 0x3:DAP_HPSPK_EN */
 	adcdrc_cfg 	= <0x0>;
-	adchpf_cfg 	= <0x0>;
+	adchpf_cfg 	= <0x1>;
 	dacdrc_cfg 	= <0x0>;
 	dachpf_cfg 	= <0x0>;
 	/* Volume about */
@@ -735,9 +737,6 @@ tvd_row*tvd_column is the total tvd channel number to be used in multichannel mo
 	pa_msleep_time 	= <0x78>;
 	/* gpio-spk	= <&pio PF 2 GPIO_ACTIVE_HIGH>; */
 	/* gpio-spk-pwr	= <&pio PF 4 GPIO_ACTIVE_HIGH>; */
-	/* CMA config about */
-	playback_cma	= <128>;
-	capture_cma	= <256>;
 	/* regulator about */
 	/* avcc-supply	= <&reg_aldo1>; */
 	/* hpvcc-supply	= <&reg_eldo1>; */
@@ -751,6 +750,9 @@ tvd_row*tvd_column is the total tvd channel number to be used in multichannel mo
 };
 
 &dummy_cpudai {
+	/* CMA config about */
+	playback_cma	= <128>;
+	capture_cma	= <256>;
 	status = "okay";
 };
 
@@ -1296,12 +1298,14 @@ pull up or pull down(default 0), driver level(default 1), data>
 	status = "okay";
 };
 
+/*
 &pwm7 {
 	pinctrl-names = "active", "sleep";
 	pinctrl-0 = <&pwm7_pin_a>;
 	pinctrl-1 = <&pwm7_pin_b>;
 	status = "okay";
 };
+*/
 
 &rtp {
 	allwinner,tp-sensitive-adjust = <0xf>;

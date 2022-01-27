@@ -13,7 +13,7 @@
 &target {
 	boot_clock = <1008>;	/*CPU boot frequency, Unit: MHz*/
 	storage_type = <0xffffffff>; /*boot medium, 0-nand, 1-card0, 2-card2, -1(defualt)auto scan*/
-	burn_key = <1>;		/*1:support burn key; 0:not support burn key*/
+	burn_key = <0>;		/*1:support burn key; 0:not support burn key*/
 	dragonboard_test = <0>;	/*1:support card boot dragonboard; 0:not support card boot dragonboard*/
 };
 
@@ -264,7 +264,7 @@
 	lcd_used            = <1>;
 
 	lcd_driver_name     = "tft08006";
-	lcd_backlight       = <50>;
+	lcd_backlight       = <100>;
 	lcd_if              = <4>;
 
 	lcd_x               = <800>;
@@ -275,7 +275,7 @@
 
 	lcd_pwm_used        = <1>;
 	lcd_pwm_ch          = <2>;
-	lcd_pwm_freq        = <50000>;
+	lcd_pwm_freq        = <1000>;
 	lcd_pwm_pol         = <0>;
 	lcd_pwm_max_limit   = <255>;
 

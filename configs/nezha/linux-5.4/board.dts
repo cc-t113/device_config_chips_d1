@@ -263,34 +263,28 @@
 	};
 
 	daudio0_pins_a: daudio0@0 {
-		pins = "PB29", "PB23", "PB24",
-		       "PB25", "PB26", "PB27", "PB28",
-		       "PB22";
+		pins = "PE17", "PE16", "PE15", "PE14", "PE13";
 		function = "i2s0";
 		drive-strength = <20>;
 		bias-disable;
 	};
 
 	daudio0_pins_b: daudio0_sleep@0 {
-		pins = "PB29", "PB23", "PB24",
-		       "PB25", "PB26", "PB27", "PB28",
-		       "PB22";
+		pins = "PE17", "PE16", "PE15", "PE14", "PE13";
 		function = "io_disabled";
 		drive-strength = <20>;
 		bias-disable;
 	};
 
 	daudio1_pins_a: daudio1@0 {
-		pins = "PB29", "PB23", "PB24",
-		       "PB25", "PB26", "PB27", "PB28";
+		pins = "PG11", "PG12", "PG13", "PG14", "PG15";
 		function = "i2s1";
 		drive-strength = <20>;
 		bias-disable;
 	};
 
 	daudio1_pins_b: daudio1_sleep@0 {
-		pins = "PB29", "PB23", "PB24",
-		       "PB25", "PB26", "PB27", "PB28";
+		pins = "PG11", "PG12", "PG13", "PG14", "PG15";
 		function = "io_disabled";
 		drive-strength = <20>;
 		bias-disable;
@@ -419,6 +413,7 @@
 		function = "gpio_in";
 	};
 
+/*
 	pwm7_pin_a: pwm7@0 {
 		pins = "PD22";
 		function = "pwm7";
@@ -430,6 +425,7 @@
 		pins = "PD22";
 		function = "gpio_in";
 	};
+*/
 
 	s_cir0_pins_a: s_cir@0 {
 		pins = "PB12";
@@ -478,11 +474,11 @@
 };
 
 &uart3 {
-	compatible = "allwinner,sun20iw1-dsp-uart";
+	/*compatible = "allwinner,sun20iw1-dsp-uart";*/
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&uart3_pins_a>;
 	pinctrl-1 = <&uart3_pins_a>;
-	status = "okay";
+	status = "disabled";
 };
 
 &soc {
@@ -716,13 +712,13 @@ tvd_row*tvd_column is the total tvd channel number to be used in multichannel mo
 /* if audiocodec is used, sdc0 and uart0 should be closed to enable PA. */
 &codec {
 	/* MIC and headphone gain setting */
-	mic1gain 	= <0x1F>;
-	mic2gain 	= <0x1F>;
-	mic3gain 	= <0x1F>;
+	mic1gain 	= <0x13>;
+	mic2gain 	= <0x13>;
+	mic3gain 	= <0x13>;
 	/* ADC/DAC DRC/HPF func enabled */
         /* 0x1:DAP_HP_EN; 0x2:DAP_SPK_EN; 0x3:DAP_HPSPK_EN */
 	adcdrc_cfg 	= <0x0>;
-	adchpf_cfg 	= <0x0>;
+	adchpf_cfg 	= <0x1>;
 	dacdrc_cfg 	= <0x0>;
 	dachpf_cfg 	= <0x0>;
 	/* Volume about */
@@ -735,9 +731,6 @@ tvd_row*tvd_column is the total tvd channel number to be used in multichannel mo
 	pa_msleep_time 	= <0x78>;
 	/* gpio-spk	= <&pio PF 2 GPIO_ACTIVE_HIGH>; */
 	/* gpio-spk-pwr	= <&pio PF 4 GPIO_ACTIVE_HIGH>; */
-	/* CMA config about */
-	playback_cma	= <128>;
-	capture_cma	= <256>;
 	/* regulator about */
 	/* avcc-supply	= <&reg_aldo1>; */
 	/* hpvcc-supply	= <&reg_eldo1>; */
@@ -751,6 +744,9 @@ tvd_row*tvd_column is the total tvd channel number to be used in multichannel mo
 };
 
 &dummy_cpudai {
+	/* CMA config about */
+	playback_cma	= <128>;
+	capture_cma	= <256>;
 	status = "okay";
 };
 
@@ -1240,7 +1236,7 @@ pull up or pull down(default 0), driver level(default 1), data>
 	lcd_used            = <1>;
 
 	lcd_driver_name     = "tft08006";
-	lcd_backlight       = <50>;
+	lcd_backlight       = <100>;
 	lcd_if              = <4>;
 
 	lcd_x               = <800>;
@@ -1251,7 +1247,7 @@ pull up or pull down(default 0), driver level(default 1), data>
 
 	lcd_pwm_used        = <1>;
 	lcd_pwm_ch          = <2>;
-	lcd_pwm_freq        = <50000>;
+	lcd_pwm_freq        = <1000>;
 	lcd_pwm_pol         = <0>;
 	lcd_pwm_max_limit   = <255>;
 
@@ -1314,13 +1310,14 @@ pull up or pull down(default 0), driver level(default 1), data>
 	pinctrl-1 = <&pwm2_pin_b>;
 	status = "okay";
 };
-
+/*
 &pwm7 {
 	pinctrl-names = "active", "sleep";
 	pinctrl-0 = <&pwm7_pin_a>;
 	pinctrl-1 = <&pwm7_pin_b>;
 	status = "okay";
 };
+*/
 
 &rtp {
 	allwinner,tp-sensitive-adjust = <0xf>;
